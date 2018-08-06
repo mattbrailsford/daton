@@ -18,7 +18,7 @@ In your markup render DATON specific attributes to represent data that should be
         <img src="/img/joe.png" width="400" data-js-attr="{ image: 'src', size: 'width' }" />
         <h4 data-js-value="name">Joe blogs</h4>
         <p>Job Role: <span data-js-value="role">Director</span></p>
-        <p>Email: <span data-js-value="email">joe@blogs.com</spann></p>
+        <p>Email: <span data-js-value="email">joe@blogs.com</span></p>
         <div data-js-object="address">
           <p data-js-value="line1">10 Some St</p>
           <p data-js-value="town">Barnsley</p>
@@ -31,7 +31,7 @@ In your markup render DATON specific attributes to represent data that should be
         <img src="/img/jane.png" width="400" data-js-attr="{ image: 'src', size: 'width' }"  />
         <h4 data-js-value="name">Jane blogs</h4>
         <p>Job Role: <span data-js-value="role">Director</span></p>
-        <p>Email: <span data-js-value="email">joe@blogs.com</spann></p>
+        <p>Email: <span data-js-value="email">joe@blogs.com</span></p>
       </a>
     </li>
   </ul>
@@ -43,6 +43,7 @@ In your javascript, call `DATON.parse` on your root dom node
 ````javascript
 var div = document.getElementById('data');
 var result = DATON.parse(div);
+console.log(result);
 
 // Output
 {
