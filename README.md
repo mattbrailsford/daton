@@ -3,9 +3,11 @@ DATON is a parser for object notations embedded in the dom via data attributes. 
 
 ## Usage
 Include DATON in your page
-````<script src="js/DATON.js"></script>
+
+````<script src="js/DATON.js"></script>````
 
 In your markup render DATON specific attributes to represent data that should be parsed
+
 ````
 <div id="data">
   <ul data-js-array="people">
