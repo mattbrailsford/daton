@@ -18,7 +18,7 @@ const DATON = ((w, d, u) => {
   }
   
   const parseObjectStr = (str) => {
-    var obj = JSON.parse(str.replace(/'/g, '"'));
+    var obj = JSON.parse(str.replace(/(?<!\\)'/g, '"').replace(/\\'/g, '\''));
     return isArray(obj)
       ? obj.reduce((o, k) => {
           o[k] = k;
