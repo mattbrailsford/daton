@@ -68,7 +68,7 @@ const DATON = ((w, d, u) => {
     } else if (typeInfo.type === 'attribute' && isObjectStr(typeInfo.key)) {
       const map = parseObjectStr(typeInfo.key);
       for (let prop in map) {
-        setValue(json, prop, elem.getAttribute(map[prop]));
+        setValue(json, map[prop], elem.getAttribute(prop));
       }
       return json;
     } else if (typeInfo.type === 'value') {

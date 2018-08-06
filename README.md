@@ -14,8 +14,8 @@ In your markup render DATON specific attributes to represent data that should be
 <div id="data">
   <ul data-js-array="people">
     <li data-js-object>
-      <a href="http://www.google.com" data-js-attr="{ link: 'href' }">
-        <img src="/img/joe.png" width="400" data-js-attr="{ image: 'src', size: 'width' }" />
+      <a href="http://www.google.com" data-js-attr="{ 'href' : 'link' }">
+        <img src="/img/joe.png" width="400" data-js-attr="{ 'src' : 'image', 'width' : 'size' }" />
         <h4 data-js-value="name">Joe blogs</h4>
         <p>Job Role: <span data-js-value="role">Director</span></p>
         <p>Email: <span data-js-value="email">joe@blogs.com</span></p>
@@ -27,8 +27,8 @@ In your markup render DATON specific attributes to represent data that should be
       </a>
     </li>
     <li data-js-object>
-        <a href="http://www.yahoo.com" data-js-attr="{ link: 'href' }">
-        <img src="/img/jane.png" width="400" data-js-attr="{ image: 'src', size: 'width' }"  />
+        <a href="http://www.yahoo.com" data-js-attr="{ 'href' : 'link' }">
+        <img src="/img/jane.png" width="400" data-js-attr="{ 'src' : 'image', 'width' : 'size' }"  />
         <h4 data-js-value="name">Jane blogs</h4>
         <p>Job Role: <span data-js-value="role">Director</span></p>
         <p>Email: <span data-js-value="email">joe@blogs.com</span></p>
@@ -77,7 +77,7 @@ Supported attributes are
 
 * **data-js-array** Denotes the start of an array
 * **data-js-object** Denotes the start of an object
-* **data-js-attr** Defines an attribute map where the object key denotes the target key, and the value denotes the attribute to parse the value from
+* **data-js-attr** Defines an attribute map where the object key attribute to parse, and the value denotes the object key the value will be assigned to
 * **data-js-value** Denotes a value entry taking the inner text content of the dom node
 
 For attributes `data-js-array`, `data-js-object` and `data-js-value` the value of the attribute denotes the object key within the parsed parent object context. If the parent object context is an array, the value can be ommitted and the parsed child objects / values will be pushed into the array in order of occurance.
