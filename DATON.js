@@ -13,14 +13,16 @@ const DATON = ((w, d, u) => {
   }
   
   const isObjectStr = (str) => {
-    return str.indexOf('{') == 0 && str.indexOf('}') == str.length - 1;
+    return (str.indexOf('{') == 0 && str.indexOf('}') == str.length - 1)
+      || (str.indexOf('[') == 0 && str.indexOf(']') == str.length - 1);
   }
   
   const parseObjectStr = (str) => {
     return str.split(',')
-      .map(x => x.split(':').map(y => trim(y, '\\s\'"{}')))
+      .map(x => x.split(':').map(y => trim(y, '\\s\'"{}[]')))
       .reduce((a, x) => {
-        a[x[0]] = x[1];
+        console.log(x[0], x[1])
+        a[x[0]] = x[1] || x[0];
         return a;
       }, {});
   }
