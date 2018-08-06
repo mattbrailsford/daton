@@ -14,7 +14,7 @@ In your markup render DATON specific attributes to represent data that should be
 <div id="data">
   <ul data-js-array="people">
     <li data-js-object>
-      <a href="http://www.google.com" data-js-attribute="{ link: 'href' }">
+      <a href="http://www.google.com" data-js-attr="{ link: 'href' }">
         <img src="/img/joe.png" width="400" data-js-attr="{ image: 'src', size: 'width' }" />
         <h4 data-js-value="name">Joe blogs</h4>
         <p>Job Role: <span data-js-value="role">Director</span></p>
@@ -27,7 +27,7 @@ In your markup render DATON specific attributes to represent data that should be
       </a>
     </li>
     <li data-js-object>
-        <a href="http://www.yahoo.com" data-js-attribute="{ link: 'href' }">
+        <a href="http://www.yahoo.com" data-js-attr="{ link: 'href' }">
         <img src="/img/jane.png" width="400" data-js-attr="{ image: 'src', size: 'width' }"  />
         <h4 data-js-value="name">Jane blogs</h4>
         <p>Job Role: <span data-js-value="role">Director</span></p>
