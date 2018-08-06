@@ -77,7 +77,7 @@ Supported attributes are
 
 * **data-js-array** Denotes the start of an array
 * **data-js-object** Denotes the start of an object
-* **data-js-attr** Defines an attribute map where the object key attribute to parse, and the value denotes the object key the value will be assigned to
+* **data-js-attr** Defines an attribute map where the object key denotes the attribute to parse, and the value denotes the object key the value will be assigned to in the parent object context
 * **data-js-value** Denotes a value entry taking the inner text content of the dom node
 
 For attributes `data-js-array`, `data-js-object` and `data-js-value` the value of the attribute denotes the object key within the parsed parent object context. If the parent object context is an array, the value can be ommitted and the parsed child objects / values will be pushed into the array in order of occurance.
