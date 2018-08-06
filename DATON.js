@@ -18,13 +18,13 @@ const DATON = ((w, d, u) => {
   }
   
   const parseObjectStr = (str) => {
-    return str.split(',')
-      .map(x => x.split(':').map(y => trim(y, '\\s\'"{}[]')))
-      .reduce((a, x) => {
-        console.log(x[0], x[1])
-        a[x[0]] = x[1] || x[0];
-        return a;
-      }, {});
+    var obj = JSON.parse(str.replace(/'/g, '"'));
+    return isArray(obj)
+      ? obj.reduce((o, k) => {
+          o[k] = k;
+          return o;
+        }, {})
+      : obj;
   }
   
   const setValue = (obj, key, val) => {
