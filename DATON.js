@@ -1,15 +1,11 @@
 const DATON = ((w, d, u) => {
-
-  const trim = (str, chars = '\\s') => {
-    return str.replace(new RegExp('^['+ chars +']+|['+ chars +']+$','g'), '');
-  }
   
   const isObject = (obj) => {
     return typeof obj === 'object';
   }
   
   const isArray = (obj) => {
-    return typeof obj === 'object' && obj.constructor === Array;
+    return isObject(obj) && obj.constructor === Array;
   }
   
   const isObjectStr = (str) => {
@@ -34,53 +30,54 @@ const DATON = ((w, d, u) => {
     return val;
   }
   
-  const getTypeInfo = (elem, prefix) => {
+  const parseData = (elem, typeInfo, json) => {
+    if (typeInfo.type === 'array') {
+      return setValue(json, typeInfo.cfg, []);
+    } else if (typeInfo.type === 'object') {
+      return setValue(json, typeInfo.cfg, {});
+    } else if (typeInfo.type === 'attribute' && isObjectStr(typeInfo.cfg)) {
+      const map = parseObjectStr(typeInfo.cfg);
+      for (let prop in map) {
+        setValue(json, map[prop], elem.getAttribute(prop));
+      }
+    } else if (typeInfo.type === 'value') {
+      setValue(json, typeInfo.cfg, elem.textContent);
+    }
+    return null;
+  }
+  
+  const getTypeInfo = (elem, ns) => {
     if (elem.hasAttributes()) {
+      const attrPrefix = 'data-' + (ns ? ns + '-' : '');
       const attrs = elem.attributes;
       for (let attr of attrs) {
-        if (attr.name.indexOf(prefix) === 0) {
-          let key = attr.name.substr(prefix.length + 1).toLowerCase();
+        if (attr.name.indexOf(attrPrefix) === 0) {
+          let key = attr.name.substr(attrPrefix.length).toLowerCase();
           switch (key) {
             case 'arr':
             case 'array':
-              return { type: 'array', key: attr.value };
+              return { type: 'array', cfg: attr.value };
             case 'obj':
             case 'object':
-              return { type: 'object', key: attr.value };
+              return { type: 'object', cfg: attr.value };
             case 'attr':
             case 'attrs':
             case 'attribute':
             case 'attributes':
-              return { type: 'attribute', key: attr.value };
+              return { type: 'attribute', cfg: attr.value };
             case 'val':
             case 'value':
-              return { type: 'value', key: attr.value };
+              return { type: 'value', cfg: attr.value };
           }
         }
       }
     }
     return null;
   }
-  
-  const parseData = (elem, typeInfo, json) => {
-    if (typeInfo.type === 'array') {
-      return setValue(json, typeInfo.key, []);
-    } else if (typeInfo.type === 'object') {
-      return setValue(json, typeInfo.key, {});
-    } else if (typeInfo.type === 'attribute' && isObjectStr(typeInfo.key)) {
-      const map = parseObjectStr(typeInfo.key);
-      for (let prop in map) {
-        setValue(json, map[prop], elem.getAttribute(prop));
-      }
-      return json;
-    } else if (typeInfo.type === 'value') {
-      return setValue(json, typeInfo.key, elem.textContent);
-    }
-  }
     
-  const processElement = (elem, prefix, json) => {
+  const processElement = (elem, ns, json) => {
     let data;
-    let typeInfo = getTypeInfo(elem, prefix);
+    let typeInfo = getTypeInfo(elem, ns);
     if (typeInfo) {
       data = parseData(elem, typeInfo, json);
     }
@@ -88,10 +85,10 @@ const DATON = ((w, d, u) => {
     if (children) {
       let childrenLen = children.length;
       for (let i = 0; i < childrenLen; i++) {
-        if (data && isObject(data)) {
-          processElement(children[i], prefix, data);
+        if (typeInfo && (typeInfo.type === 'array' || typeInfo.type === 'object') && data) {
+          processElement(children[i], ns, data);
         } else {
-          processElement(children[i], prefix, json);
+          processElement(children[i], ns, json);
         }
       }
     }
@@ -99,8 +96,8 @@ const DATON = ((w, d, u) => {
 
   class DATON {
 
-    parse (elem, prefix = 'data-js', json = {}) {
-      processElement(elem, prefix, json);
+    parse (elem, ns = 'dtn', json = {}) {
+      processElement(elem, ns, json);
       return json;
     }
 
