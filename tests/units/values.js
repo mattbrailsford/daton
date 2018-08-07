@@ -38,7 +38,7 @@ QUnit.module("Values", () => {
     
     });
     
-    QUnit.test("Can parse object value syntax", (assert) => {
+    QUnit.test("Can parse object syntax attribute", (assert) => {
     
         // Arrange
         let el = createHtml(`<div id="data">
