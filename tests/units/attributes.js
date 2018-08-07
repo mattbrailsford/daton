@@ -43,6 +43,28 @@ QUnit.module("Attributes", () => {
     
     });
 
+    QUnit.test(`Can parse single attribute syntax`, (assert) => {
+
+        // Arrange
+        let el = createHtml(`<div id="data">
+            <a href="www.google.com" title="Google" data-dtn-attr="href">
+                <img src="/image/img.png" data-dtn-attr="'src'">Link</a>
+            </a>
+        </div>`);
+
+        // Act
+        let parsed = DATON.parse(el);
+        let expected = {
+            href: 'www.google.com',
+            src: '/image/img.png'
+        }
+
+        // Assert
+        assert.expect(1);
+        assert.deepEqual(parsed, expected, `Object matches expected output`);
+    
+    });
+
     QUnit.test(`Can parse attribute with single quotes`, (assert) => {
 
         // Arrange
