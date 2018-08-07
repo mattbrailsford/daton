@@ -7,7 +7,7 @@ DATON (Data ATtribute Object Notation) is a parser for object notations embedded
 ## Usage
 Include DATON in your page
 
-````javascript
+````html
 <script src="js/DATON.js"></script>
 ````
 
