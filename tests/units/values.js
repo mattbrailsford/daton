@@ -2,7 +2,7 @@ QUnit.module("Values", () => {
 
     ['value', 'val'].forEach(key => {
 
-        QUnit.test(`Can parse data-dtn-${key} attribute`, (assert) => {
+        QUnit.test(`Can parse ${key} attribute`, (assert) => {
 
             // Arrange
             let el = createHtml(`<div id="data">
