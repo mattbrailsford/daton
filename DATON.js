@@ -1,6 +1,6 @@
 (function () {
   
-  const objectStrRegex = /^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/;
+  const objectStrRegex = /^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/; // { ... } or [ ... ]
 
   const quoteRegex1 = /\\'/g;   // Escaped single quote
   const quoteRegex2 = /'/g;     // Single quote
