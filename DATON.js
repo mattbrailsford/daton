@@ -1,4 +1,4 @@
-((w, d, u) => {
+(function () {
   
   const isObject = (obj) => {
     return typeof obj === 'object';
@@ -14,7 +14,10 @@
   }
   
   const parseObjectStr = (str) => {
-    var obj = JSON.parse(str.replace(/(?<!\\)'/g, '"').replace(/\\'/g, '\''));
+    // Would like to do a negative lookbehind regex to skip escaped single commas
+    // but not all browsers support it, so we replace them to a temp format 
+    // then replace them again afterwards
+    var obj = JSON.parse(str.replace(/\\'/g, '__\'__').replace(/'/g, '"').replace(/__"__/g, '\''));
     return isArray(obj)
       ? obj.reduce((o, k) => {
           o[k] = k;
