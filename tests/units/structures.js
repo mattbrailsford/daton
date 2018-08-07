@@ -18,7 +18,7 @@ QUnit.module("Structures", () => {
                             <p>Telephone: <a href="tel:03216549887" data-dtn-value="telephone">0321654987</a></p>
                         </li>
                     </ul>
-                    <a href="www.google.com" data-dtn-attr="{ 'href':'link' }">Link</a>
+                    <a href="www.google.com" data-dtn-attr="{ 'link' : 'href' }">Link</a>
                 </div>
                 <div data-dtn-obj>
                     <h3 data-dtn-value="name">Jane</h3>
@@ -33,7 +33,7 @@ QUnit.module("Structures", () => {
                             <p>Telephone: <a href="tel:0789456123" data-dtn-value="telephone">0789456123</a></p>
                         </li>
                     </ul>
-                    <a href="www.yahoo.com" data-dtn-attr="{ 'href':'link' }">Link</a>
+                    <a href="www.yahoo.com" data-dtn-attr="{ 'link' : 'href' }">Link</a>
                 </div>
             </div>
         </div>`);

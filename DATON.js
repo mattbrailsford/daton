@@ -52,15 +52,21 @@
         if (isObjectStr(typeInfo.cfg)) {
           const map = parseObjectStr(typeInfo.cfg);
           for (let prop in map) {
-            setValue(json, map[prop], elem.getAttribute(prop));
+            setValue(json, prop, elem.getAttribute(map[prop]));
           }
         } else {
-          let cleanCfg = trimStr(typeInfo.cfg);
-          setValue(json, cleanCfg, elem.getAttribute(cleanCfg));
+          setValue(json, typeInfo.cfg, elem.getAttribute(typeInfo.cfg));
         }
         break;
       case 'value':
-        setValue(json, typeInfo.cfg, elem.textContent);
+        if (isObjectStr(typeInfo.cfg)) {
+          const map = parseObjectStr(typeInfo.cfg);
+          for (let prop in map) {
+            setValue(json, prop, map[prop]);
+          }
+        } else {
+          setValue(json, typeInfo.cfg, elem.textContent);
+        }
         break;
     }
     return null;

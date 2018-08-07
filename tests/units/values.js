@@ -37,6 +37,25 @@ QUnit.module("Values", () => {
         }, 'Throws error when attribte value is empty');
     
     });
+    
+    QUnit.test("Can parse object value syntax", (assert) => {
+    
+        // Arrange
+        let el = createHtml(`<div id="data">
+            <div data-dtn-value="{ 'name': 'Jane' }">John</div>
+        </div>`);
+    
+        // Act/Assert
+        let parsed = DATON.parse(el);
+        let expected = {
+            name: 'Jane'   
+        };
+    
+        // Assert
+        assert.expect(1);
+        assert.deepEqual(parsed, expected, `Object matches expected output`);
+    
+    });
 
 });
 

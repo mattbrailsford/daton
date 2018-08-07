@@ -6,7 +6,7 @@ QUnit.module("Attributes", () => {
 
             // Arrange
             let el = createHtml(`<div id="data">
-                <a href="www.google.com" data-dtn-${key}="{ 'href' : 'link' }">Link</a>
+                <a href="www.google.com" data-dtn-${key}="{ 'link' : 'href' }">Link</a>
             </div>`);
 
             // Act
@@ -48,7 +48,7 @@ QUnit.module("Attributes", () => {
         // Arrange
         let el = createHtml(`<div id="data">
             <a href="www.google.com" title="Google" data-dtn-attr="href">
-                <img src="/image/img.png" data-dtn-attr="'src'">Link</a>
+                <img src="/image/img.png" data-dtn-attr="src">Link</a>
             </a>
         </div>`);
 
@@ -69,7 +69,7 @@ QUnit.module("Attributes", () => {
 
         // Arrange
         let el = createHtml(`<div id="data">
-            <a href="www.google.com" title="Google" data-dtn-attr="{ 'href': 'href\\'s', 'title': 'title\\'s' }">Link</a>
+            <a href="www.google.com" title="Google" data-dtn-attr="{ 'href\\'s' : 'href', 'title\\'s' : 'title' }">Link</a>
         </div>`);
 
         // Act

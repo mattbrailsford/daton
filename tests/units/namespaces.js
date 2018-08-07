@@ -8,12 +8,12 @@ QUnit.module("Namespaces", () => {
                 <div data-test-obj>
                     <h3 data-test-value="name">John</h3>
                     <p data-test-value="role">Director</p>
-                    <a href="www.google.com" data-test-attr="{ 'href':'link' }">Link</a>
+                    <a href="www.google.com" data-test-attr="{ 'link' : 'href' }">Link</a>
                 </div>
                 <div data-test-obj>
                     <h3 data-test-value="name">Jane</h3>
                     <p data-test-value="role">Director</p>
-                    <a href="www.yahoo.com" data-test-attr="{ 'href':'link' }">Link</a>
+                    <a href="www.yahoo.com" data-test-attr="{ 'link' : 'href' }">Link</a>
                 </div>
             </div>
         </div>`);
