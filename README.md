@@ -88,3 +88,5 @@ For attributes `data-dtn-array`, `data-dtn-object` and `data-dtn-value` the valu
 ## TODO
 * [ ] A means of casting the type of a variable
 * [ ] Having multiple attributes per tag?
+* [ ] `data-dtn-href` attribute to move parsing to node which is not a child node (watch out for circular dependencies)?
+* [ ] `data-dtn-raw` for raw values which are not pulled from the rendered markup?
