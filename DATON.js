@@ -1,4 +1,4 @@
-const DATON = ((w, d, u) => {
+((w, d, u) => {
   
   const isObject = (obj) => {
     return typeof obj === 'object';
@@ -49,7 +49,7 @@ const DATON = ((w, d, u) => {
   }
   
   const getTypeInfo = (elem, ns) => {
-    if (elem.hasAttributes()) {
+    if (elem.attributes) {
       const attrPrefix = 'data-' + (ns ? ns + '-' : '');
       const attrs = elem.attributes;
       for (let attr of attrs) {
@@ -105,8 +105,11 @@ const DATON = ((w, d, u) => {
 
   }
 
-  return w.DATON = new DATON();
+  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = new DATON();
+  } else {
+    window.DATON = new DATON();
+  };
 
-})(window, document);
+})();
 
-module.exports = DATON
