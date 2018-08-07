@@ -1,0 +1,18 @@
+{
+  "name": "daton",
+  "version": "1.0.0",
+  "description": "A parser for object notations embedded in the dom via data attributes",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattbrailsford/daton.git"
+  },
+  "author": "Matt Brailsford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattbrailsford/daton/issues"
+  },
+  "homepage": "https://github.com/mattbrailsford/daton#readme"
+}
