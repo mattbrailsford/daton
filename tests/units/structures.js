@@ -1,32 +1,83 @@
-// QUnit.module("Structures", () => {
+QUnit.module("Structures", () => {
 
-//     // Can change names
+    QUnit.test(`Can parse nested attributes`, (assert) => {
 
-//     QUnit.test(`Can parse attribute`, (assert) => {
+        // // Arrange
+        let el = createHtml(`<div id="data">
+            <div data-dtn-array="people">
+                <div data-dtn-obj>
+                    <h3 data-dtn-value="name">John</h3>
+                    <p data-dtn-value="role">Director</p>
+                    <ul data-dtn-array="contacts">
+                        <li data-dtn-obj>
+                            <h4 data-dtn-value="name">Home</h4>
+                            <p>Telephone: <a href="tel:0123456789" data-dtn-value="telephone">0123456789</a></p>
+                        </li>
+                        <li data-dtn-obj>
+                            <h4 data-dtn-value="name">Work</h4>
+                            <p>Telephone: <a href="tel:03216549887" data-dtn-value="telephone">0321654987</a></p>
+                        </li>
+                    </ul>
+                    <a href="www.google.com" data-dtn-attr="{ 'href':'link' }">Link</a>
+                </div>
+                <div data-dtn-obj>
+                    <h3 data-dtn-value="name">Jane</h3>
+                    <p data-dtn-value="role">Director</p>
+                    <ul data-dtn-array="contacts">
+                        <li data-dtn-obj>
+                            <h4 data-dtn-value="name">Home</h4>
+                            <p>Telephone: <a href="tel:0987654321" data-dtn-value="telephone">0987654321</a></p>
+                        </li>
+                        <li data-dtn-obj>
+                            <h4 data-dtn-value="name">Mobile</h4>
+                            <p>Telephone: <a href="tel:0789456123" data-dtn-value="telephone">0789456123</a></p>
+                        </li>
+                    </ul>
+                    <a href="www.yahoo.com" data-dtn-attr="{ 'href':'link' }">Link</a>
+                </div>
+            </div>
+        </div>`);
 
-//         // // Arrange
-//         // let el = createHtml(`<div id="data">
-//         //     <div data-dtn-${key}="person">
-//         //         <h3 data-dtn-value="name">John</h3>
-//         //         <p data-dtn-value="role">Director</p>
-//         //     </div>
-//         // </div>`);
+        // // Act
+        let parsed = DATON.parse(el);
+        let expected = {
+            "people": [
+                {
+                  "name": "John",
+                  "role": "Director",
+                  "link": "www.google.com",
+                  "contacts": [
+                    {
+                      "name": "Home",
+                      "telephone": "0123456789"
+                    },
+                    {
+                      "name": "Work",
+                      "telephone": "0321654987"
+                    }
+                  ]
+                },
+                {
+                  "name": "Jane",
+                  "role": "Director",
+                  "link": "www.yahoo.com",
+                  "contacts": [
+                    {
+                      "name": "Home",
+                      "telephone": "0987654321"
+                    },
+                    {
+                      "name": "Mobile",
+                      "telephone": "0789456123"
+                    }
+                  ]
+                }
+            ]
+        }
 
-//         // // Act
-//         // let obj = DATON.parse(el);
-
-//         // // Assert
-//         // assert.ok(obj.hasOwnProperty('person'), `Object has matching key`);
-//         // assert.ok(isObject(obj.person), `Object key value is an object`);
-//         // assert.ok(obj.person.hasOwnProperty('name')
-//         //     && obj.person.hasOwnProperty('role'), 
-//         //     `Object has correct properties`);
-//         // assert.ok(obj.person.name === 'John'
-//         //     && obj.person.role === 'Director', 
-//         //     `Object property values match template`);
-
-//         assert.ok(true)
+        // // Assert
+        assert.deepEqual(parsed, expected, `Object matches expected output`);
     
-//     });
+    });
 
-// });
+});
