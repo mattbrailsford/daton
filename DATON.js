@@ -1,5 +1,11 @@
 (function () {
   
+  const objectStrRegex = /^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/;
+
+  const quoteRegex1 = /\\'/g;   // Escaped single quote
+  const quoteRegex2 = /'/g;     // Single quote
+  const quoteRegex3 = /__"__/g; // Temp format single quote
+
   const isObject = (obj) => {
     return typeof obj === 'object';
   }
@@ -9,14 +15,14 @@
   }
   
   const isObjectStr = (str) => {
-    return str.match(/^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/);
+    return str.match(objectStrRegex);
   }
   
   const parseObjectStr = (str) => {
     // Would like to do a negative lookbehind regex to skip escaped single commas
     // but not all browsers support it, so we replace them to a temp format 
     // then replace them again afterwards
-    var obj = JSON.parse(str.replace(/\\'/g, '__\'__').replace(/'/g, '"').replace(/__"__/g, '\''));
+    var obj = JSON.parse(str.replace(quoteRegex1, '__\'__').replace(quoteRegex2, '"').replace(quoteRegex3, '\''));
     return isArray(obj)
       ? obj.reduce((o, k) => {
           o[k] = k;
@@ -35,17 +41,22 @@
   // Parses data attribute and returns an obj/arr
   // if a new child object is started
   const parseData = (elem, typeInfo, json) => {
-    if (typeInfo.type === 'array') {
-      return setValue(json, typeInfo.cfg, []);
-    } else if (typeInfo.type === 'object') {
-      return setValue(json, typeInfo.cfg, {});
-    } else if (typeInfo.type === 'attribute' && isObjectStr(typeInfo.cfg)) {
-      const map = parseObjectStr(typeInfo.cfg);
-      for (let prop in map) {
-        setValue(json, map[prop], elem.getAttribute(prop));
-      }
-    } else if (typeInfo.type === 'value') {
-      setValue(json, typeInfo.cfg, elem.textContent);
+    switch (typeInfo.type) {
+      case 'array':
+        return setValue(json, typeInfo.cfg, []);
+      case 'object':
+        return setValue(json, typeInfo.cfg, {});
+      case 'attribute':
+        if (isObjectStr(typeInfo.cfg)) {
+          const map = parseObjectStr(typeInfo.cfg);
+          for (let prop in map) {
+            setValue(json, map[prop], elem.getAttribute(prop));
+          }
+        }
+        break;
+      case 'value':
+        setValue(json, typeInfo.cfg, elem.textContent);
+        break;
     }
     return null;
   }
