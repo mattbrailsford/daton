@@ -1,10 +1,9 @@
 (function () {
   
-  const objectStrRegex = /^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/; // { ... } or [ ... ]
+  const objectStrRegex = /^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/g; // { ... } or [ ... ]
 
-  const quoteRegex1 = /\\'/g;   // Escaped single quote
-  const quoteRegex2 = /'/g;     // Single quote
-  const quoteRegex3 = /__"__/g; // Temp format single quote
+  const quoteRegex1 = /([^'\\]*(?:\\.[^'\\]*)*)'/g;   // Non escaped single quotes
+  const quoteRegex2 = /\\'/g; // Escaped single quotes
 
   const isObject = (obj) => {
     return typeof obj === 'object';
@@ -22,7 +21,7 @@
     // Would like to do a negative lookbehind regex to skip escaped single commas
     // but not all browsers support it, so we replace them to a temp format 
     // then replace them again afterwards
-    var obj = JSON.parse(str.replace(quoteRegex1, '__\'__').replace(quoteRegex2, '"').replace(quoteRegex3, '\''));
+    let obj = JSON.parse(str.replace(quoteRegex1, '$1"').replace(quoteRegex2, '\''));
     return isArray(obj)
       ? obj.reduce((o, k) => {
           o[k] = k;
