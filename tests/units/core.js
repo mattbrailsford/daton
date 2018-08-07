@@ -17,7 +17,7 @@ QUnit.test("Can parse value attribute", function (assert) {
     let obj = DATON.parse(el);
 
     // Assert
-    assert.ok(obj.hasOwnProperty('name'), "Has matching object key");
+    assert.ok(obj.hasOwnProperty('name'), "Object has matching key");
     assert.equal(obj.name, "John", "Object value matches template value");
 
 });
