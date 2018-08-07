@@ -30,6 +30,8 @@ const DATON = ((w, d, u) => {
     return val;
   }
   
+  // Parses data attribute and returns an obj/arr
+  // if a new child object is started
   const parseData = (elem, typeInfo, json) => {
     if (typeInfo.type === 'array') {
       return setValue(json, typeInfo.cfg, []);
@@ -85,7 +87,7 @@ const DATON = ((w, d, u) => {
     if (children) {
       let childrenLen = children.length;
       for (let i = 0; i < childrenLen; i++) {
-        if (typeInfo && (typeInfo.type === 'array' || typeInfo.type === 'object') && data) {
+        if (data) {
           processElement(children[i], ns, data);
         } else {
           processElement(children[i], ns, json);
@@ -106,3 +108,5 @@ const DATON = ((w, d, u) => {
   return w.DATON = new DATON();
 
 })(window, document);
+
+module.exports = DATON
