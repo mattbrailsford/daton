@@ -9,8 +9,7 @@
   }
   
   const isObjectStr = (str) => {
-    return (str.indexOf('{') == 0 && str.indexOf('}') == str.length - 1)
-      || (str.indexOf('[') == 0 && str.indexOf(']') == str.length - 1);
+    return str.match(/^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/);
   }
   
   const parseObjectStr = (str) => {
