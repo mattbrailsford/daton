@@ -18,9 +18,6 @@
   }
   
   const parseObjectStr = (str) => {
-    // Would like to do a negative lookbehind regex to skip escaped single commas
-    // but not all browsers support it, so we replace them to a temp format 
-    // then replace them again afterwards
     let obj = JSON.parse(str.replace(quoteRegex1, '$1"').replace(quoteRegex2, '\''));
     return isArray(obj)
       ? obj.reduce((o, k) => {
