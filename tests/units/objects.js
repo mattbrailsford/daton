@@ -13,17 +13,16 @@ QUnit.module("Objects", () => {
             </div>`);
 
             // Act
-            let obj = DATON.parse(el);
+            let parsed = DATON.parse(el);
+            let expected = {
+                person: {
+                    name: 'John',
+                    role: 'Director'
+                }
+            }
 
             // Assert
-            assert.ok(obj.hasOwnProperty('person'), `Object has matching key`);
-            assert.ok(isObject(obj.person), `Object key value is an object`);
-            assert.ok(obj.person.hasOwnProperty('name')
-                && obj.person.hasOwnProperty('role'), 
-                `Object has correct properties`);
-            assert.ok(obj.person.name === 'John'
-                && obj.person.role === 'Director', 
-                `Object property values match template`);
+            assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });
 

@@ -10,11 +10,13 @@ QUnit.module("Values", () => {
             </div>`);
         
             // Act
-            let obj = DATON.parse(el);
+            let parsed = DATON.parse(el);
+            let expected = {
+                name: 'John'   
+            };
         
             // Assert
-            assert.ok(obj.hasOwnProperty('name'), `Object has matching key`);
-            assert.equal(obj.name, "John", `Object value matches template value`);
+            assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });
 
@@ -30,8 +32,7 @@ QUnit.module("Values", () => {
         // Act/Assert
         assert.throws(function () {
             DATON.parse(el);
-        },
-        'Throws error when attribte value is empty');
+        }, 'Throws error when attribte value is empty');
     
     });
 

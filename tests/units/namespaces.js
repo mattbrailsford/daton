@@ -19,16 +19,26 @@ QUnit.module("Namespaces", () => {
         </div>`);
 
         // Act
-        let obj = DATON.parse(el, 'test');
+        let parsed = DATON.parse(el, 'test');
+
+        let expected = {
+            people: [
+                {
+                    name: 'John',
+                    role: 'Director',
+                    link: 'www.google.com'
+                },
+                {
+                    name: 'Jane',
+                    role: 'Director',
+                    link: 'www.yahoo.com'
+                }
+            ]
+        }
 
         // Assert
-        assert.ok(obj.hasOwnProperty('people'), `Object has matching key`);
-        assert.ok(isArray(obj.people), `Object key is the right type`);
-        assert.ok(obj.people[0].name === 'John'
-            && obj.people[0].link === 'www.google.com'
-            && obj.people[1].name === 'Jane'
-            && obj.people[1].link === 'www.yahoo.com', 
-            `Object has correct property values`);
+        assert.deepEqual(parsed, expected, `Object matches expected output`);
+        assert.deepEqual(DATON.parse(el), {}, "Default parse returns empty object")
     
     });
 

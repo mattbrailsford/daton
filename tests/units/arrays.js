@@ -14,12 +14,13 @@ QUnit.module("Arrays", () => {
             </div>`);
         
             // Act
-            let obj = DATON.parse(el);
-        
+            let parsed = DATON.parse(el);
+            let expected = {
+                items: ['Item 1', 'Item 2', 'Item 3']
+            }
+
             // Assert
-            assert.ok(obj.hasOwnProperty('items'), `Object has matching key`);
-            assert.ok(isArray(obj.items), `Object key value is an array`);
-            assert.equal(obj.items.length, 3, `Array contains right ammount of items`);
+            assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });
 
@@ -37,13 +38,12 @@ QUnit.module("Arrays", () => {
         </div>`);
     
         // Act
-        let obj = DATON.parse(el);
-    
+        let parsed = DATON.parse(el);
+        let expected = {
+            items: ['Item 2', 'Item 1', 'Item 3']
+        }
         // Assert
-        assert.ok(obj.items[0] === 'Item 2'
-            && obj.items[1] === 'Item 1'
-            && obj.items[2] === 'Item 3', 
-            "Array is in right order");
+        assert.deepEqual(parsed, expected, `Object matches expected output`);
     
     });
 

@@ -10,11 +10,13 @@ QUnit.module("Attributes", () => {
             </div>`);
 
             // Act
-            let obj = DATON.parse(el);
+            let parsed = DATON.parse(el);
+            let expected = {
+                link: 'www.google.com'
+            }
 
             // Assert
-            assert.ok(obj.hasOwnProperty('link'), `Object has matching key`);
-            assert.ok(obj.link === 'www.google.com', `Property values match template`);
+            assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });
 
@@ -28,11 +30,14 @@ QUnit.module("Attributes", () => {
         </div>`);
 
         // Act
-        let obj = DATON.parse(el);
+        let parsed = DATON.parse(el);
+        let expected = {
+            href: 'www.google.com',
+            title: 'Google'
+        }
 
         // Assert
-        assert.ok(obj.hasOwnProperty('href') && obj.hasOwnProperty('title'), `Object has matching key`);
-        assert.ok(obj.href === 'www.google.com' && obj.title === 'Google', `Property values match template`);
+        assert.deepEqual(parsed, expected, `Object matches expected output`);
     
     });
 
