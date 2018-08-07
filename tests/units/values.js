@@ -1,6 +1,6 @@
 QUnit.module("Values", () => {
 
-    ['value', 'val'].forEach(key => {
+    ['value', 'values', 'val', 'vals'].forEach(key => {
 
         QUnit.test(`Can parse ${key} attribute`, (assert) => {
 
@@ -42,13 +42,14 @@ QUnit.module("Values", () => {
     
         // Arrange
         let el = createHtml(`<div id="data">
-            <div data-dtn-value="{ 'name': 'Jane' }">John</div>
+            <div data-dtn-value="{ 'name': 'Jane', 'age' : 40 }">John</div>
         </div>`);
     
         // Act/Assert
         let parsed = DATON.parse(el);
         let expected = {
-            name: 'Jane'   
+            name: 'Jane',
+            age: 40   
         };
     
         // Assert

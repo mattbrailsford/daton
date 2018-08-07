@@ -92,7 +92,9 @@
             case 'attributes':
               return { type: 'attribute', cfg: attr.value };
             case 'val':
+            case 'vals':
             case 'value':
+            case 'values':
               return { type: 'value', cfg: attr.value };
           }
         }
