@@ -20,6 +20,7 @@ QUnit.module("Arrays", () => {
             }
 
             // Assert
+            assert.expect(1);
             assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });
@@ -42,7 +43,9 @@ QUnit.module("Arrays", () => {
         let expected = {
             items: ['Item 2', 'Item 1', 'Item 3']
         }
+        
         // Assert
+        assert.expect(1);
         assert.deepEqual(parsed, expected, `Object matches expected output`);
     
     });

@@ -16,6 +16,7 @@ QUnit.module("Attributes", () => {
             }
 
             // Assert
+            assert.expect(1);
             assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });
@@ -37,6 +38,7 @@ QUnit.module("Attributes", () => {
         }
 
         // Assert
+        assert.expect(1);
         assert.deepEqual(parsed, expected, `Object matches expected output`);
     
     });

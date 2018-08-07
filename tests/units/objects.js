@@ -22,6 +22,7 @@ QUnit.module("Objects", () => {
             }
 
             // Assert
+            assert.expect(1);
             assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });

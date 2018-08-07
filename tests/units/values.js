@@ -16,6 +16,7 @@ QUnit.module("Values", () => {
             };
         
             // Assert
+            assert.expect(1);
             assert.deepEqual(parsed, expected, `Object matches expected output`);
         
         });
@@ -30,6 +31,7 @@ QUnit.module("Values", () => {
         </div>`);
     
         // Act/Assert
+        assert.expect(1);
         assert.throws(function () {
             DATON.parse(el);
         }, 'Throws error when attribte value is empty');

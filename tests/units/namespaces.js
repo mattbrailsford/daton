@@ -37,6 +37,7 @@ QUnit.module("Namespaces", () => {
         }
 
         // Assert
+        assert.expect(2);
         assert.deepEqual(parsed, expected, `Object matches expected output`);
         assert.deepEqual(DATON.parse(el), {}, "Default parse returns empty object")
     
