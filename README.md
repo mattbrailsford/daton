@@ -5,10 +5,16 @@
 DATON (Data ATtribute Object Notation) is a javascript parser for object notations embedded in the dom via data attributes. The main use case for this is to allow progressive enhancement such that a sever could render standard markup decorated with DATON specific attributes and then these can be easily parsed and accessed in javascript as plain old objects.
 
 ## Usage
-Include DATON in your page
+Install via `npm`
+
+````bash
+npm install daton --save
+````
+
+or include directly in your page
 
 ````html
-<script src="js/DATON.min.js"></script>
+<script src="https://unpkg.com/daton"></script>
 ````
 
 In your markup render DATON specific attributes to represent data that should be parsed
@@ -44,6 +50,9 @@ In your markup render DATON specific attributes to represent data that should be
 In your javascript, call `DATON.parse` on your root dom node
 
 ````javascript
+// Uncomment if loading via node
+// import DATON from 'daton';
+
 var div = document.getElementById('data');
 var result = DATON.parse(div);
 console.log(result);
