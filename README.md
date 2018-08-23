@@ -84,9 +84,3 @@ Supported attributes are
 * **data-dtn-value** Denotes a value entry taking the inner text content of the dom node
 
 For attributes `data-dtn-array`, `data-dtn-object` and `data-dtn-value` the value of the attribute denotes the object key within the parsed parent object context. If the parent object context is an array, the value can be ommitted and the parsed child objects / values will be pushed into the array in order of occurance.
-
-## TODO
-* [ ] A means of casting the type of a variable
-* [ ] Having multiple attributes per tag?
-* [ ] `data-dtn-href` attribute to move parsing to node which is not a child node (watch out for circular dependencies)?
-* [x] `data-dtn-raw` for raw values which are not pulled from the rendered markup? (maybe extend `data-dtn-value` with object notation)
