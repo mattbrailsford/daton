@@ -2,8 +2,14 @@
   "name": "daton",
   "version": "1.0.0",
   "description": "A parser for object notations embedded in the dom via data attributes",
+  "main": "dist/DATON.umd.js",
+  "module": "dist/DATON.esm.js",
+  "unpkg": "dist/DATON.min.js",
   "scripts": {
-    "test": ""
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/DATON.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/DATON.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/DATON.min.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/mattbrailsford/daton/issues"
   },
-  "homepage": "https://github.com/mattbrailsford/daton#readme"
+  "homepage": "https://github.com/mattbrailsford/daton#readme",
+  "devDependencies": {
+    "rollup": "^0.64.1",
+    "rollup-plugin-babel-minify": "^5.0.0",
+    "rollup-plugin-buble": "^0.19.2",
+    "rollup-plugin-uglify": "^4.0.0"
+  },
+  "files": [
+    "dist"
+  ]
 }

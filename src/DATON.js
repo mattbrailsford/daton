@@ -1,4 +1,4 @@
-(function () {
+export default (function () {
   
   const objectStrRegex = /^[\t ]*(?:\{[\w\W]*\}|\[[\w\W]*\])[\t ]*$/g; // { ... } or [ ... ]
 
@@ -70,7 +70,8 @@
     if (elem.attributes) {
       const attrPrefix = 'data-' + (ns ? ns + '-' : '');
       const attrs = elem.attributes;
-      for (let attr of attrs) {
+      for (let a = 0; a < attrs.length; a++) {
+        let attr = attrs[a];
         if (attr.name.indexOf(attrPrefix) === 0) {
           let key = attr.name.substr(attrPrefix.length).toLowerCase();
           switch (key) {
@@ -125,11 +126,6 @@
 
   }
 
-  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-    module.exports = new DATON();
-  } else {
-    window.DATON = new DATON();
-  };
+  return new DATON();
 
 })();
-
