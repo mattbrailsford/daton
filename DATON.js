@@ -5,12 +5,6 @@
   const quoteRegex1 = /([^'\\]*(?:\\.[^'\\]*)*)'/g;   // Non escaped single quotes
   const quoteRegex2 = /\\'/g; // Escaped single quotes
 
-  const stringRegex = /^[\s'"]+|[\s'"]+$/g // Remove whitespace and ' or " from string ends
-
-  const trimStr = (str) => {
-    return str.replace(stringRegex, '');
-  }
-
   const isObject = (obj) => {
     return typeof obj === 'object';
   }
