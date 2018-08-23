@@ -1,6 +1,6 @@
 # DATON
 
-[[Demo]](http://jsfiddle.net/4yt872hL/4/) [[Tests]](https://mattbrailsford.github.io/daton/tests/) 
+[[Demo]](http://jsfiddle.net/4yt872hL/5/) [[Tests]](https://mattbrailsford.github.io/daton/tests/) 
 
 DATON (Data ATtribute Object Notation) is a javascript parser for object notations embedded in the dom via data attributes. The main use case for this is to allow progressive enhancement such that a sever could render standard markup decorated with DATON specific attributes and then these can be easily parsed and accessed in javascript as plain old objects.
 
